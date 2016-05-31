@@ -32,13 +32,15 @@ try:
     'subDomain' : "wave",
     'recordType' : "A",
     'ttl' : 120,
-    'recordId' : 194112586,
+    'recordId' : 194112589,
     'recordLine' : 1,
     'recordValue' :  ip
 }
 
     print service.generateUrl(action, params)
     print service.call(action, params)
+    raw_input()
 except Exception, e:
     print 'exception:', e
+    raw_input()
 
