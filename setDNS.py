@@ -20,7 +20,7 @@ try:
         print "useage: " + sys.argv[0] + "+ your id"
         print "get you ip"
         ip_json = urllib2.urlopen("https://httpbin.org/ip").read()
-        ip = json.dumps(ip_json)[21:-8]
+        ip = json.loads(ip_json)["origin"]
     else:
         ip = sys.argv[1]
     print "your ip " + ip
