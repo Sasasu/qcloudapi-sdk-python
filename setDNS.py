@@ -13,13 +13,14 @@ config = {
     'secretKey': 'BBiiBD7Yr78IfOwnH0Y7J0TouwapONJd',
     'method': 'post'
 }
+
 params = {
     'type' : 1 ,
     'domain' : 'sasasu.cn',
     'subDomain' : "wave",
     'recordType' : "A",
     'ttl' : 120,
-    'recordId' : 194112589,
+    'recordId' : 194338723,
     'recordLine' : 1,
     'recordValue' :  "0.0.0.0"
 }
