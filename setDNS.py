@@ -18,7 +18,7 @@ try:
     service = QcloudApi(module, config)
     if(len(sys.argv)==1):
         print "You can use: " + sys.argv[0] + "+ your id"
-        print "Getting you ip"
+        print "Getting your ip"
         ip_html = urllib2.urlopen("http://test.ip138.com/query/").read()
         ip_json = json.loads(ip_html)
         ip =  ip_json["ip"]
