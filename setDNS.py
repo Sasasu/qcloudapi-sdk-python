@@ -18,14 +18,14 @@ try:
     service = QcloudApi(module, config)
     if(len(sys.argv)==1):
         print "useage: " + sys.argv[0] + "+ your id"
-        print "get you ip"
-        ip_json = urllib2.urlopen("https://httpbin.org/ip").read()
-        ip = json.loads(ip_json)["origin"]
+        print "getting you ip"
+        ip_html = urllib2.urlopen("http://test.ip138.com/query/").read()
+        ip_json = json.loads(ip_html)
+        ip =  ip_json["ip"]
     else:
         ip = sys.argv[1]
-    print "your ip " + ip
-    
-    
+
+    print "your ip is " + ip
     params = {
     'type' : 1 ,
     'domain' : 'sasasu.cn',
@@ -37,9 +37,14 @@ try:
     'recordValue' :  ip
 }
 
-    print service.generateUrl(action, params)
-    print service.call(action, params)
-    raw_input()
+    print  "设置解析中"
+    service.generateUrl(action, params)
+    ans = service.call(action, params)
+    ans_json = json.loads(ans)
+    if(ans_json["code"] == 0):
+        raw_input("设置成功,请等几分钟生效")
+    else:
+        raw_input("看起来设置失败了QAQ")
 except Exception, e:
     print 'exception:', e
     raw_input()
