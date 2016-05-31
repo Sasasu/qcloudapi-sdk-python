@@ -25,7 +25,7 @@ try:
     else:
         ip = sys.argv[1]
 
-    print "Your IP is" + ip
+    print "Your IP is " + ip
 
 
     params = {
