@@ -41,9 +41,8 @@ try:
 
     print  "设置解析中"
     service.generateUrl(action, params)
-    ans = service.call(action, params)
-    ans_json = json.loads(ans)
-    if(ans_json["code"] == 0):
+    ans = json.loads(service.call(action,params))
+    if(ans["code"] == 0):
         raw_input("设置成功,请等几分钟生效")
     else:
         print("看起来设置失败了QAQ，失败信息是:",ans_json["message"],"\n失败代码：",ans_json["code"])
