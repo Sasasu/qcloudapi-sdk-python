@@ -13,22 +13,7 @@ config = {
     'secretKey': 'BBiiBD7Yr78IfOwnH0Y7J0TouwapONJd',
     'method': 'post'
 }
-
-try:
-    service = QcloudApi(module, config)
-    if(len(sys.argv)==1):
-        print "你可以使用 " + sys.argv[0] + "+你的ip地址来设置ip"
-        print "正在自动获取你的ip地址"
-        ip_html = urllib2.urlopen("http://test.ip138.com/query/").read()
-        ip_json = json.loads(ip_html)
-        ip =  ip_json["ip"]
-    else:
-        ip = sys.argv[1]
-
-    print "Your IP is " + ip
-
-
-    params = {
+params = {
     'type' : 1 ,
     'domain' : 'sasasu.cn',
     'subDomain' : "wave",
@@ -36,18 +21,38 @@ try:
     'ttl' : 120,
     'recordId' : 194112589,
     'recordLine' : 1,
-    'recordValue' :  ip
-    }
+    'recordValue' :  "0.0.0.0"
+}
 
-    print  "设置解析中"
-    service.generateUrl(action, params)
-    ans = json.loads(service.call(action,params))
-    if(ans["code"] == 0):
-        raw_input("设置成功,请等几分钟生效")
+def getip():
+    if(len(sys.argv)==1):
+        print "你可以使用 " + sys.argv[0] + "+你的ip地址来设置ip"
+        print "正在自动获取你的ip地址"
+        ip_html = urllib2.urlopen("http://test.ip138.com/query/").read()
+        ip_json = json.loads(ip_html)
+        ip =  ip_json["ip"].decode()
     else:
-        print("看起来设置失败了QAQ，失败信息是:",ans_json["message"],"\n失败代码：",ans_json["code"])
+        ip = sys.argv[1].decode()
+    return ip
+
+def main():
+    try:
+        service = QcloudApi(module, config)
+        params["recordValue"] = getip()
+        print "Your IP is " + params["recordValue"]
+
+        print  "设置解析中"
+        service.generateUrl(action, params)
+        ans = json.loads(service.call(action,params))
+        if(ans["code"] == 0):
+            raw_input("设置成功,请等几分钟生效")
+        else:
+            print("看起来设置失败了QAQ，失败信息是:",ans["message"],"\n失败代码：",ans["code"])
+            raw_input()
+    except Exception, e:
+        print 'exception:', e
         raw_input()
-except Exception, e:
-    print 'exception:', e
-    raw_input()
+
+if (__name__ == '__main__'):
+    main()
 
