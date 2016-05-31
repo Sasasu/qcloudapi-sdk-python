@@ -26,8 +26,8 @@ params = {
 
 def getip():
     if(len(sys.argv)==1):
-        print "你可以使用 " + sys.argv[0] + "+你的ip地址来设置ip"
-        print "正在自动获取你的ip地址"
+        print "You can use " + sys.argv[0] + "+ ip"
+        print "Getting your ip"
         ip_html = urllib2.urlopen("http://test.ip138.com/query/").read()
         ip_json = json.loads(ip_html)
         ip =  ip_json["ip"].decode()
@@ -41,7 +41,7 @@ def main():
         params["recordValue"] = getip()
         print "Your IP is " + params["recordValue"]
 
-        print  "设置解析中"
+        print  "Setting record"
         service.generateUrl(action, params)
         ans = json.loads(service.call(action,params))
         if(ans["code"] == 0):
