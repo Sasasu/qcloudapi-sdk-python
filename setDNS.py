@@ -17,15 +17,15 @@ config = {
 try:
     service = QcloudApi(module, config)
     if(len(sys.argv)==1):
-        print "useage: " + sys.argv[0] + "+ your id"
-        print "getting you ip"
+        print "You can use: " + sys.argv[0] + "+ your id"
+        print "Getting you ip"
         ip_html = urllib2.urlopen("http://test.ip138.com/query/").read()
         ip_json = json.loads(ip_html)
         ip =  ip_json["ip"]
     else:
         ip = sys.argv[1]
 
-    print "your ip is " + ip
+    print "Your ip is " + ip
     params = {
     'type' : 1 ,
     'domain' : 'sasasu.cn',
