@@ -10,6 +10,9 @@ class QcloudApi:
         if (module == 'cdb'):
             from modules.cdb import Cdb
             service = Cdb(config)
+        elif (module == 'cns'):
+            from modules.scaling import Cns
+            service = Cns(config)
         elif (module == 'account'):
             from modules.account import Account
             service = Account(config)

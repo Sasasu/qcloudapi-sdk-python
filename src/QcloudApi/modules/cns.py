@@ -3,7 +3,7 @@
 
 from base import Base
 
-class Cvm(Base):
+class Cns(Base):
     requestHost = 'cns.api.qcloud.com'
 
 def main():
@@ -15,7 +15,7 @@ def main():
         'method': 'get'
     }
     params = {}
-    service = Cvm(config)
+    service = Cns(config)
     print service.call(action, params)
 
 if (__name__ == '__main__'):
