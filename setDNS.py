@@ -36,7 +36,6 @@ def getip():
     return ip
 
 def main():
-    try:
         service = QcloudApi(module, config)
         params["recordValue"] = getip()
         print "Your IP is " + params["recordValue"]
@@ -49,9 +48,6 @@ def main():
         else:
             print("看起来设置失败了QAQ，失败信息是:",ans["message"],"\n失败代码：",ans["code"])
             raw_input()
-    except Exception, e:
-        print 'exception:', e
-        raw_input()
 
 if (__name__ == '__main__'):
     main()
